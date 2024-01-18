@@ -17,4 +17,10 @@ def plot_model3(u):
     plt.ylabel('velocity (m/s)')
     plt.show()
 
+def min_u(r):
+    pass
+
+
 plot_model3(30)
+
+min_u(10)

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import math
 
-r = 100
+r = 10
 
 def plot_model1(u):
     results = {}

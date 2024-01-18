@@ -11,7 +11,7 @@ def velocity_at_angle(u, theta, radius):
 
     return v
 
-v = 100
+v = 50
 results = {}
 
 for i in range(0, 360):
