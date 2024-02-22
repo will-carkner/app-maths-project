@@ -7,7 +7,7 @@ def velocity_at_angle(u, theta, radius):
     theta = math.radians(theta)
     mu = 0.3
 
-    v = math.sqrt(u**2 - 2* (mu * (u**2/radius + 9.8*math.sin(theta)) - 9.8*math.cos(theta)) * (2*math.pi*radius/360))
+    v = math.sqrt(u**2 - 2* (mu * (u**2/radius + 9.8*math.cos(theta)) - 9.8*math.sin(theta)) * (2*math.pi*radius/360))
 
     return v
 

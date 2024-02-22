@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import math
+import pandas as pd
+import numpy as np
 
 r = 10
 
@@ -17,9 +19,8 @@ def plot_model1(u):
 def plot_min_vs_rad(r):
     min_u = round(math.sqrt(5*9.8*r), 0)
     min_u = int(min_u)
-    plt.plot(r, min_u, 'ro')
-    plt.xlabel('radius (m)')
-    plt.ylabel('minimum velocity (m/s)')
+    res[r] = min_u    
+
 
 if __name__ == '__main__':
     min_u = round(math.sqrt(5*9.8*r), 0)
@@ -33,11 +34,28 @@ if __name__ == '__main__':
 
     plt.show()
 
+    res = {}
     for i in range(0, 101, 10):
         plot_min_vs_rad(i)
 
+    plt.plot(res.keys(), res.values())
+    # convert res to pd datafram
+    # plot curve of best fit for minimum velocity vs radius
+    import matplotlib.pyplot as plt
+
+    res_df = pd.DataFrame({'radius': list(res.keys()), 'minimum_velocity': list(res.values())})
+
+    # Plot curve of best fit for minimum velocity vs radius
+    x = res_df['radius']
+    y = res_df['minimum_velocity']
+    coefficients = np.polyfit(x, y, 2)
+    polynomial = np.poly1d(coefficients)
+    x_new = np.linspace(x.min(), x.max(), 100)
+    y_new = polynomial(x_new)
+
+    plt.plot(x, y, 'o', label='Data')
+    plt.plot(x_new, y_new, label='Best Fit Curve')
     plt.xlabel('radius (m)')
     plt.ylabel('minimum velocity (m/s)')
-
+    plt.legend()
     plt.show()
-
